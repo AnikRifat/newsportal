@@ -24,17 +24,21 @@ Route::get('/', function () {
 
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-Route::get('/category/store', [CategoryController::class, 'store'])->name('category.store');
+Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
 Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
-Route::get('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
+Route::put('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
 Route::get('/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+Route::get('/category/active/{category}', [CategoryController::class, 'active'])->name('category.active');
+Route::get('/category/inactive/{category}', [CategoryController::class, 'inactive'])->name('category.inactive');
 
 
 //news-routes....
 
 Route::get('/news', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
-Route::get('/news/store', [NewsController::class, 'store'])->name('news.store');
+Route::post('/news/store', [NewsController::class, 'store'])->name('news.store');
 Route::get('/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');
-Route::get('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
+Route::put('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
 Route::get('/news/destroy/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
+Route::get('/news/active/{news}', [NewsController::class, 'active'])->name('news.active');
+Route::get('/news/inactive/{news}', [NewsController::class, 'inactive'])->name('news.inactive');

@@ -13,10 +13,10 @@
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb justify-content-end">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active">Create Category</li>
+                <li class="breadcrumb-item active">category</li>
             </ol>
-            <a href="{{ route('category.index') }}" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i
-                  class="fa fa-bar"></i>All Category</a>
+            <a href="{{ route('category.create') }}" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i
+                  class="fa fa-plus-circle"></i> Create New</a>
         </div>
     </div>
 </div>
@@ -31,14 +31,13 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="m-b-0 text-dark">Add Category</h3>
+                <h3 class="m-b-0 text-dark">Edit Category</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('category.store') }}" method="get" class="floating-labels">
-                    @csrf
+                <form action="{{ route('category.update',$category->id) }}" class="floating-labels">
                     <div class="form-body">
                         <div class="form-group m-b-40">
-                            <input type="text" class="form-control" name="name" id="name">
+                            <input type="text" class="form-control" name="name" id="name" value="{{ $category->name }}">
                             <span class="bar"></span>
                             <label for="name">Category name</label>
                         </div>

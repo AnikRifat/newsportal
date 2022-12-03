@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('pages.categories.index');
+        $categories = Category::all();
+        return view('pages.categories.index', compact('categories'));
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.categories.index');
+        return view('pages.categories.create');
     }
 
     /**
@@ -35,7 +36,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        $input = $request->all();
+        if (category::create($input)) {
+            return redirect()->route('category.index')->with('success', 'category Added successfully.');
+        } else {
+            return back()->with('error', 'Error.');
+        }
     }
 
     /**
@@ -69,7 +78,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+
+        ]);
+        $input = $request->all();
+        if ($category->update($input)) {
+
+            return redirect()->route('category.index')->with('success', 'category edited successfully.');
+        } else {
+            return back()->with('error', 'Error.');
+        }
     }
 
     /**
@@ -80,6 +99,53 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if ($category->delete()) {
+            return redirect()->route('category.index')->with('success', 'category deleted successfully.');
+        } else {
+            return back()->with('error', 'Error.');
+        }
     }
+
+
+
+
+
+    /**
+     * Active the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function Active(Request $request, Category $category)
+    {
+        if ($category->update(['status' => 1])) {
+            return redirect()->route('category.index')->with('success', 'category Activated successfully.');
+        } else {
+            return back()->with('error', 'error.');
+        }
+    }
+    /**
+     * Inactive  the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Category  $category
+     * @return \Illuminate\Http\Response
+     */
+    public function Inactive(Request $request, Category $category)
+    {
+        if ($category->update(['status' => 0])) {
+            return redirect()->route('category.index')->with('success', 'category Deactivated successfully.');
+        } else {
+            return back()->with('error', 'error.');
+        }
+    }
+
+
+
+
+
+
+
+
 }

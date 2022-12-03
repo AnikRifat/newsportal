@@ -85,14 +85,27 @@
                     </a>
                     <ul aria-expanded="false" class="collapse">
                         <li>
-                            <a href="{{ route('news.index') }}">Create News</a>
+                            <a href="{{ route('news.create') }}">Create News</a>
                         </li>
                         <li>
                             <a href="{{ route('news.index') }}">View News</a>
                         </li>
                     </ul>
                 </li>
-
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="ti-align-left"></i>
+                        <span class="hide-menu">category</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('category.create') }}">Create category</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('category.index') }}">View category</a>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-small-cap">--- SUPPORT</li>
 
                 <li>

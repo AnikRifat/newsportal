@@ -7,15 +7,15 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">news</h4>
+        <h4 class="text-themecolor">category</h4>
     </div>
     <div class="col-md-7 align-self-center text-end">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb justify-content-end">
                 <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                <li class="breadcrumb-item active">news</li>
+                <li class="breadcrumb-item active">Category</li>
             </ol>
-            <a href="{{ route('news.create') }}" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i
+            <a href="{{ route('category.create') }}" class="btn btn-info d-none d-lg-block m-l-15 text-white"><i
                   class="fa fa-plus-circle"></i> Create New</a>
         </div>
     </div>
@@ -31,20 +31,20 @@
         <!-- table responsive -->
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">All news </h4>
+                <h4 class="card-title">All Category </h4>
                 <div class="table-responsive m-t-40">
                     <table id="config-table" class="table display text-center table-striped border no-wrap">
                         <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>news Name</th>
+                                <th>Category Name</th>
                                 <th>status</th>
                                 <th>Action</th>
 
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($news as $item)
+                            @foreach ($categories as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
@@ -56,17 +56,17 @@
                                 <td>
                                     @if($item->status == 1)
                                     <a class="btn btn-warning waves-effect btn-circle waves-light"
-                                      href="{{ route('news.inactive',$item->id) }}">
+                                      href="{{ route('category.inactive',$item->id) }}">
                                         <i class="fa fa-eye-slash"></i> </a>
                                     @else
                                     <a class="btn btn-info waves-effect btn-circle waves-light"
-                                      href="{{ route('news.active',$item->id) }}">
+                                      href="{{ route('category.active',$item->id) }}">
                                         <i class="fa fa-eye"></i> </a> @endif
 
                                     <a class="btn btn-primary waves-effect btn-circle waves-light"
-                                      href="{{ route('news.edit',$item->id) }}">
+                                      href="{{ route('category.edit',$item->id) }}">
                                         <i class="fa fa-edit"></i> </a>
-                                    <form hidden action="{{ route('news.destroy',$item->id) }}"
+                                    <form hidden action="{{ route('category.destroy',$item->id) }}"
                                       id="form{{ $item->id }}">
                                         @csrf
                                     </form>
