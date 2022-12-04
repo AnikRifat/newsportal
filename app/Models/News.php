@@ -11,6 +11,7 @@ class News extends Model
     protected $fillable = [
 
         'news_id',
+        'category_id',
         'title',
         'subtitle',
         'author',
@@ -22,4 +23,9 @@ class News extends Model
         'datetime',
 
     ];
+
+    public function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -15,9 +16,9 @@ class NewsController extends Controller
      */
     public function index()
     {
+        $news = News::all();
 
-
-        return view('pages.news.index');
+        return view('pages.news.index', compact('news'));
     }
 
     /**
@@ -28,7 +29,8 @@ class NewsController extends Controller
     public function create()
     {
         // dd();
-        return view('pages.news.create');
+        $category = Category::all();
+        return view('pages.news.create', compact('category'));
     }
 
     /**
@@ -57,7 +59,7 @@ class NewsController extends Controller
             $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
-            $input['image'] = asset('') . $filePath . $setImage;
+            $input['image'] = asset('') . $filelink;
             // dd($input['image']);
         }
         if ($img = $request->file('primary_image')) {
@@ -69,7 +71,7 @@ class NewsController extends Controller
             $setImage = 'mpnews_primary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
-            $input['image'] = asset('') . $filePath . $setImage;
+            $input['primary_image'] = asset('') . $filelink;
         }
         if ($img = $request->file('secondary_image')) {
             $image = Image::make($img)->resize(600, 600, function ($constraint) {
@@ -80,7 +82,7 @@ class NewsController extends Controller
             $setImage = 'mpnews_secondary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
-            $input['image'] = asset('') . $filePath . $setImage;
+            $input['secondary_image'] = asset('') . $filelink;
         }
 
         $input['news_id'] = $news_id;
@@ -113,7 +115,8 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
-        return view('pages.news.edit', compact('news'));
+        $category = Category::all();
+        return view('pages.news.edit', compact('news', 'category'));
     }
 
     /**
@@ -125,7 +128,59 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+        $input = $request->all();
+        if ($img = $request->file('image')) {
+            $image = Image::make($img)->resize(600, 400, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $filePath = 'uploads/images/news/';
+            $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filelink = $filePath . $setImage;
+            $image->save($filelink, 50);
+            $input['image'] = asset('') . $filelink;
+        } else {
+            unset($input['image']);
+        }
+
+        if ($img = $request->file('primary_image')) {
+            $image = Image::make($img)->resize(600, 400, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $filePath = 'uploads/images/news/';
+            $setImage = 'mpnews_primary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filelink = $filePath . $setImage;
+            $image->save($filelink, 50);
+            $input['primary_image'] = asset('') . $filelink;
+        } else {
+            unset($input['primary_image']);
+        }
+
+        if ($img = $request->file('secondary_image')) {
+            $image = Image::make($img)->resize(600, 400, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $filePath = 'uploads/images/news/';
+            $setImage = 'mpnews_secondary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filelink = $filePath . $setImage;
+            $image->save($filelink, 50);
+            $input['secondary_image'] = asset('') . $filelink;
+        } else {
+            unset($input['secondary_image']);
+        }
+
+
+        if ($news->update($input)) {
+            return redirect()->route('news.index')->with('success', 'news Updated successfully.');
+        } else {
+            return back()->with('error', 'Error.');
+        }
     }
 
     /**

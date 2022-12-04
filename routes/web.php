@@ -34,7 +34,7 @@ Route::get('/category/inactive/{category}', [CategoryController::class, 'inactiv
 
 //news-routes....
 
-Route::get('/news', [NewsController::class, 'index'])->name('news.index');
+Route::get('/news/index', [NewsController::class, 'index'])->name('news.index');
 Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
 Route::post('/news/store', [NewsController::class, 'store'])->name('news.store');
 Route::get('/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');

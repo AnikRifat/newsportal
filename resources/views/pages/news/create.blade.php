@@ -39,9 +39,13 @@
                     @csrf
                     <div class="form-body">
                         <div class="form-group m-b-40">
-                            <input type="text" class="form-control" name="name" id="name">
-                            <span class="bar"></span>
-                            <label for="name">news name</label>
+                            <h4 for="category">news Catyegory</h4>
+
+                            <select class="form-select" name="category_id" id="category">
+                                @foreach ($category as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="form-group m-b-40">
                             <input type="text" class="form-control" name="title" id="title">
@@ -66,17 +70,18 @@
                         </div>
                         <div class="form-group m-b-40">
                             <h4 class="card-title">News Image</h4>
-                            <input type="file" id="image" name="image" class="dropify" data-max-file-size="2M" />
+                            <input type="file" id="image" name="image" class="dropify" data-max-file-size="500k" />
+                            
                         </div>
                         <div class="form-group m-b-40">
                             <h4 class="card-title">News Primary Image</h4>
                             <input type="file" id="primary_image" name="primary_image" class="dropify"
-                              data-max-file-size="2M" />
+                              data-max-file-size="500k" />
                         </div>
                         <div class="form-group m-b-40">
                             <h4 class="card-title">News secondary Image</h4>
                             <input type="file" id="secondary_image" name="secondary_image" class="dropify"
-                              data-max-file-size="2M" />
+                              data-max-file-size="500k" />
                         </div>
                     </div>
                     <div class="form-actions">
