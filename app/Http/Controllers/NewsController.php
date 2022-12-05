@@ -9,6 +9,18 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class NewsController extends Controller
 {
+
+
+    public function news()
+    {
+        $news = News::where('status', 1)->get();
+
+        return response()->json([
+            'status' => true,
+            'news' => $news,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +30,7 @@ class NewsController extends Controller
     {
         $news = News::all();
 
-        return view('pages.news.index', compact('news'));
+        return view('admin.pages.news.index', compact('news'));
     }
 
     /**
@@ -30,7 +42,7 @@ class NewsController extends Controller
     {
         // dd();
         $category = Category::all();
-        return view('pages.news.create', compact('category'));
+        return view('admin.pages.news.create', compact('category'));
     }
 
     /**
@@ -104,7 +116,10 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        //
+        return response()->json([
+            'status' => true,
+            'news' => $news,
+        ]);
     }
 
     /**
@@ -116,7 +131,7 @@ class NewsController extends Controller
     public function edit(News $news)
     {
         $category = Category::all();
-        return view('pages.news.edit', compact('news', 'category'));
+        return view('admin.pages.news.edit', compact('news', 'category'));
     }
 
     /**

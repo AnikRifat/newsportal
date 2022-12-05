@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\News;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function category()
+    {
+        $category = Category::where('status', 1)->get();
+
+        return response()->json([
+            'status' => true,
+            'category' => $category,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +27,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('pages.categories.index', compact('categories'));
+        return view('admin.pages.categories.index', compact('categories'));
     }
 
     /**
@@ -25,7 +37,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('pages.categories.create');
+        return view('admin.pages.categories.create');
     }
 
     /**
@@ -55,7 +67,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $news = News::where('category_id', $category->id)->get();
+        return response()->json([
+            'status' => true,
+            'news' => $news,
+        ]);
     }
 
     /**
@@ -66,7 +82,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('pages.categories.edit', compact('category'));
+        return view('admin.pages.categories.edit', compact('category'));
     }
 
     /**
@@ -140,12 +156,4 @@ class CategoryController extends Controller
             return back()->with('error', 'error.');
         }
     }
-
-
-
-
-
-
-
-
 }
