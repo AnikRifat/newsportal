@@ -25,13 +25,15 @@
                         <!--/.wp-news_post-date-->
                         <div class="wp-news_single-content">
                             <div class="post-image ">
-                                <img src="{{ $item->image }}" alt="wpnews" class="max-auto img-fluid img-thumbnail">
                                 <p class="post-image-details">{{ $item->title }}</p>
-                                @if($item->primary_image)
+                                <div class="text-center">
+                                    <img src="{{ $item->image }}" alt="wpnews" class="img-fluid img-thumbnail">
+                                </div>
+                                {{-- @if($item->primary_image)
                                 <img src="{{ $item->primary_image }}" alt="wpnews"
-                                  class="max-auto img-fluid img-thumbnail">
+                                class="max-auto img-fluid img-thumbnail">
 
-                                @endif
+                                @endif --}}
                             </div>
                             <p>
                                 {!! $item->content !!}

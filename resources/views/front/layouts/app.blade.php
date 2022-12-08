@@ -145,7 +145,7 @@
                         <div id="ticker-box">
                             <ul>
                                 @foreach ($news as $item)
-                                <li><a href="#">{{ $item->title }}</a></li>
+                                <li><a href="{{ route('news',$item->id) }}">{{ $item->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>

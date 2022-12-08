@@ -22,7 +22,7 @@ Route::get('/category/{category}', [PublicController::class, 'category'])->name(
 Route::get('/news/{news}', [PublicController::class, 'news'])->name('news');
 
 
-Route::prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.pages.index');
     });

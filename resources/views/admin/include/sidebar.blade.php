@@ -109,10 +109,14 @@
                 <li class="nav-small-cap">--- SUPPORT</li>
 
                 <li>
-                    <a class="waves-effect waves-dark" href="pages-login.html" aria-expanded="false">
-                        <i class="far fa-circle text-success"></i>
-                        <span class="hide-menu">Log Out</span>
-                    </a>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button class="btn btn-danger waves-effect waves-dark" type="submit" aria-expanded="false">
+                            <i class="far fa-circle text-success"></i>
+                            <span class="hide-menu">Log Out</span>
+                        </button>
+                    </form>
+
                 </li>
             </ul>
         </nav>
