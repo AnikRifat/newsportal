@@ -28,37 +28,45 @@ Route::get('/news/{news}', [PublicController::class, 'news'])->name('news');
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.pages.index');
+    })->name('admin.index');
+    Route::middleware('admin')->group(function () {
+
+        //author-routes....
+        Route::get('/author/index', [AuthorController::class, 'index'])->name('author.index');
+        Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
+        Route::post('/author/store', [AuthorController::class, 'store'])->name('author.store');
+        Route::get('/author/edit/{author}', [AuthorController::class, 'edit'])->name('author.edit');
+        Route::put('/author/update/{author}', [AuthorController::class, 'update'])->name('author.update');
+        Route::get('/author/destroy/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
+
+
+        //Category-routes....
+        Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+        Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
+        Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+        Route::put('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
+        Route::get('/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+        Route::get('/category/active/{category}', [CategoryController::class, 'active'])->name('category.active');
+        Route::get('/category/inactive/{category}', [CategoryController::class, 'inactive'])->name('category.inactive');
+
+
+        //news-admin-routes
+        Route::post('/news/store', [NewsController::class, 'store'])->name('news.store');
+        Route::get('/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');
+        Route::put('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
+        Route::get('/news/destroy/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
+        Route::get('/news/active/{news}', [NewsController::class, 'active'])->name('news.active');
+        Route::get('/news/inactive/{news}', [NewsController::class, 'inactive'])->name('news.inactive');
     });
 
-    //author-routes....
-    Route::get('/author/index', [AuthorController::class, 'index'])->name('author.index');
-    Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
-    Route::post('/author/store', [AuthorController::class, 'store'])->name('author.store');
-    Route::get('/author/edit/{author}', [AuthorController::class, 'edit'])->name('author.edit');
-    Route::put('/author/update/{author}', [AuthorController::class, 'update'])->name('author.update');
-    Route::get('/author/destroy/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
 
-
-    //Category-routes....
-    Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
-    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
-    Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
-    Route::put('/category/update/{category}', [CategoryController::class, 'update'])->name('category.update');
-    Route::get('/category/destroy/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
-    Route::get('/category/active/{category}', [CategoryController::class, 'active'])->name('category.active');
-    Route::get('/category/inactive/{category}', [CategoryController::class, 'inactive'])->name('category.inactive');
 
     //news-routes....
 
     Route::get('/news/index', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/news/pending', [NewsController::class, 'pending'])->name('news.pending');
     Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
-    Route::post('/news/store', [NewsController::class, 'store'])->name('news.store');
-    Route::get('/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');
-    Route::put('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
-    Route::get('/news/destroy/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
-    Route::get('/news/active/{news}', [NewsController::class, 'active'])->name('news.active');
-    Route::get('/news/inactive/{news}', [NewsController::class, 'inactive'])->name('news.inactive');
 });
 
 Auth::routes();

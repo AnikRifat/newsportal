@@ -26,8 +26,9 @@ return new class extends Migration
             $table->string('image');
             $table->string('primary_image')->nullable();
             $table->string('social_image')->nullable();
-            $table->string('status')->default('1')->comment('1->active,0->inactive');
+            $table->string('status')->default('2')->comment('1->active,0->inactive');
             $table->string('datetime')->nullable();
+            $table->tinyInteger('breaking_news')->default('0');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Str;
 
@@ -29,11 +30,18 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::all();
+        $news = News::where('author', Auth::user()->name)->orderBy('id', 'DESC')->get();;
+        $newsAll = News::orderBy('id', 'DESC')->get();
 
-        return view('admin.pages.news.index', compact('news'));
+        return view('admin.pages.news.index', compact('news', 'newsAll'));
     }
+    public function pending()
+    {
+        $news = News::where('author', Auth::user()->name)->where('status', 2)->orderBy('id', 'DESC')->get();
+        $newsAll = News::where('status', 2)->orderBy('id', 'DESC')->get();
 
+        return view('admin.pages.news.pending', compact('news', 'newsAll'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -100,7 +108,7 @@ class NewsController extends Controller
 
         $input['news_id'] = $news_id;
 
-        $input['category_name'] = Category::find($request->category_id);
+        $input['category_name'] = Category::find($request->category_id)->name;
         $input['key'] = Str::random(10);
         $input['datetime'] = $datetime;
 
@@ -194,7 +202,9 @@ class NewsController extends Controller
             unset($input['social_image']);
         }
         $input['category_name'] = Category::find($request->category_id)->name;
-
+        if (!$news->key) {
+            $input['key'] = Str::random(10);
+        }
         if ($news->update($input)) {
             return redirect()->route('news.index')->with('success', 'news Updated successfully.');
         } else {

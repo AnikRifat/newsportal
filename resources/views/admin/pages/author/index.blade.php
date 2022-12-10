@@ -54,9 +54,9 @@
 
                                 <td>
 
-                                    <a class="btn btn-primary waves-effect btn-circle waves-light"
+                                    {{-- <a class="btn btn-primary waves-effect btn-circle waves-light"
                                       href="{{ route('author.edit',$item->id) }}">
-                                        <i class="fa fa-edit"></i> </a>
+                                    <i class="fa fa-edit"></i> </a> --}}
                                     <form hidden action="{{ route('author.destroy',$item->id) }}"
                                       id="form{{ $item->id }}">
                                         @csrf

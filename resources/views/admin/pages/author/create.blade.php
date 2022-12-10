@@ -77,7 +77,7 @@
                         <div class="form-actions">
                             <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i>
                                 Save</button>
-                            {{-- <button type="button" class="btn btn-inverse">Cancel</button> --}}
+
                         </div>
                     </div>
                 </form>

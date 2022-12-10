@@ -94,6 +94,10 @@ class CategoryController extends Controller
 
         ]);
         $input = $request->all();
+        if (!$category->key) {
+            $input['key'] = Str::random(10);
+        }
+
         if ($category->update($input)) {
 
             return redirect()->route('category.index')->with('success', 'category edited successfully.');
