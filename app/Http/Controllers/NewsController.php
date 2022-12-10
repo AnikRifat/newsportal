@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Str;
 
 class NewsController extends Controller
 {
@@ -98,7 +99,9 @@ class NewsController extends Controller
         }
 
         $input['news_id'] = $news_id;
+
         $input['category_name'] = Category::find($request->category_id);
+        $input['key'] = Str::random(10);
         $input['datetime'] = $datetime;
 
 
@@ -190,7 +193,7 @@ class NewsController extends Controller
         } else {
             unset($input['social_image']);
         }
-        $input['category_name'] = Category::find($request->category_id);
+        $input['category_name'] = Category::find($request->category_id)->name;
 
         if ($news->update($input)) {
             return redirect()->route('news.index')->with('success', 'news Updated successfully.');

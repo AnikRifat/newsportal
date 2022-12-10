@@ -34,7 +34,9 @@
                 <h3 class="m-b-0 text-dark">Edit Category</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('category.update',$category->id) }}" class="floating-labels">
+                <form action="{{ route('category.update',$category->id) }}" method="POST" class="floating-labels">
+                    @csrf
+                    @method('put')
                     <div class="form-body">
                         <div class="form-group m-b-40">
                             <input type="text" class="form-control" name="name" id="name" value="{{ $category->name }}">

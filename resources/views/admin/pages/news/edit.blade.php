@@ -62,12 +62,6 @@
                             <label for="subtitle">news subtitle</label>
                         </div>
                         <div class="form-group m-b-40">
-                            <input type="text" class="form-control" name="author" id="author"
-                              value="{{ $news->author }}">
-                            <span class="bar"></span>
-                            <label for="author">news author</label>
-                        </div>
-                        <div class="form-group m-b-40">
 
                             <h5 for="content" class="m-b-3">News Content</h5>
                             <span class="bar"></span>

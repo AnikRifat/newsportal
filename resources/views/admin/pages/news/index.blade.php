@@ -37,6 +37,7 @@
                         <thead>
                             <tr>
                                 <th>Id</th>
+                                <th>Author</th>
                                 <th>news id</th>
                                 <th>news Category</th>
                                 <th>news title</th>
@@ -51,10 +52,11 @@
                             @foreach ($news as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
+                                <td>{{ $item->author }}</td>
                                 <td>{{ $item->news_id }}</td>
-                                <td>{{ $item->category->name }}</td>
+                                <td>{{ $item->category_name }}</td>
                                 <td>{{ $item->title ,10 }}</td>
-                                <td><img src="{{ $item->image }}" alt=""></td>
+                                <td><img src="{{ $item->image }}" height="100px"></td>
                                 <td>{{ $item->datetime }}</td>
                                 <td>
                                     @if($item->status == 1)

@@ -81,6 +81,20 @@
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="ti-align-left"></i>
+                        <span class="hide-menu">author</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('author.create') }}">Create author</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('author.index') }}">View author</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="ti-align-left"></i>
                         <span class="hide-menu">News</span>
                     </a>
                     <ul aria-expanded="false" class="collapse">

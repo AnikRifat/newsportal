@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicController;
@@ -28,6 +29,16 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.pages.index');
     });
+
+    //author-routes....
+    Route::get('/author/index', [AuthorController::class, 'index'])->name('author.index');
+    Route::get('/author/create', [AuthorController::class, 'create'])->name('author.create');
+    Route::post('/author/store', [AuthorController::class, 'store'])->name('author.store');
+    Route::get('/author/edit/{author}', [AuthorController::class, 'edit'])->name('author.edit');
+    Route::put('/author/update/{author}', [AuthorController::class, 'update'])->name('author.update');
+    Route::get('/author/destroy/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
+
+
     //Category-routes....
     Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');

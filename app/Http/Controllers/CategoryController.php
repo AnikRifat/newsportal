@@ -6,6 +6,7 @@ use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -45,6 +46,7 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
         $input = $request->all();
+        $input['key'] = Str::random(10);
         if (category::create($input)) {
             return redirect()->route('category.index')->with('success', 'category Added successfully.');
         } else {

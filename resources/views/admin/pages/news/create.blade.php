@@ -39,6 +39,13 @@
                     @csrf
                     <div class="form-body">
                         <div class="form-group m-b-40">
+                            <input type="text" class="form-control" name="author" id="author"
+                              value="{{ Auth::user()->name }}" hidden>
+                            <span class="bar"></span>
+                            <h4 for="author">news author : <span
+                                  class="text-danger">{{ Auth::user()->name }}</span></h4>
+                        </div>
+                        <div class="form-group m-b-40">
                             <h4 for="category">news Catyegory</h4>
 
                             <select class="form-select" name="category_id" id="category">
@@ -57,11 +64,7 @@
                             <span class="bar"></span>
                             <label for="subtitle">news subtitle</label>
                         </div>
-                        <div class="form-group m-b-40">
-                            <input type="text" class="form-control" name="author" id="author">
-                            <span class="bar"></span>
-                            <label for="author">news author</label>
-                        </div>
+
                         <div class="form-group m-b-40">
 
                             <h5 for="content" class="m-b-3">News Content</h5>
