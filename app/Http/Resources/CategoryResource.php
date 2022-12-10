@@ -16,7 +16,7 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request)
     {
-        $news = News::where('category_id', $this->id)->get();
+        $news = News::where('category_id', $this->id)->where('status', 1)->get();
         return [
             'id' => $this->id,
             'key' => $this->key,

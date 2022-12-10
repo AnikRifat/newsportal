@@ -27,4 +27,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/category', [ApiController::class, 'category']);
 Route::get('/{categoryName}/{newsKey}', [ApiController::class, 'news']);
 
+Route::get('/breakingNews', [ApiController::class, 'breakingNews']);
+
 // Route::get('/category/{category}', [CategoryController::class, 'show']);
