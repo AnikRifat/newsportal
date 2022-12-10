@@ -33,7 +33,6 @@ class ApiController extends Controller
     public function breakingNews()
     {
         $breakingNews = BreakingNews::where('status', 1)->orderBy('id', 'DESC')->take(10)->get();
-
         return BreakingNewsResource::collection($breakingNews);
     }
 }
