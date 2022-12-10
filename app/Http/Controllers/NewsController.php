@@ -13,7 +13,7 @@ class NewsController extends Controller
 
     public function news()
     {
-        $news = News::where('status', 1)->get();
+        $news = News::where('status', 1)->orderBy('id', 'DESC')->get();
 
         return response()->json([
             'status' => true,
@@ -98,6 +98,7 @@ class NewsController extends Controller
         }
 
         $input['news_id'] = $news_id;
+        $input['category_name'] = Category::find($request->category_id);
         $input['datetime'] = $datetime;
 
 
@@ -189,7 +190,7 @@ class NewsController extends Controller
         } else {
             unset($input['secondary_image']);
         }
-
+        $input['category_name'] = Category::find($request->category_id);
 
         if ($news->update($input)) {
             return redirect()->route('news.index')->with('success', 'news Updated successfully.');

@@ -10,8 +10,10 @@ class News extends Model
     use HasFactory;
     protected $fillable = [
 
+        'key',
         'news_id',
         'category_id',
+        'category_name',
         'title',
         'subtitle',
         'author',

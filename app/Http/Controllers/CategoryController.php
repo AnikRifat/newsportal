@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -9,15 +10,7 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
 
-    public function category()
-    {
-        $category = Category::where('status', 1)->get();
 
-        return response()->json([
-            'status' => true,
-            'category' => $category,
-        ]);
-    }
 
     /**
      * Display a listing of the resource.
@@ -67,7 +60,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $news = News::where('category_id', $category->id)->get();
+        $news = News::where('category_name', $category->name)->get();
         return response()->json([
             'status' => true,
             'news' => $news,

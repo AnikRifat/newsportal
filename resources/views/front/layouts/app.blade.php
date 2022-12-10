@@ -6,19 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="icon" type="image/png" href="favicon.png" />
-        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/') }}assets/front/images/logo.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/') }}assets/front/images/logo.png">
+        <link rel="apple-touch-icon" sizes="57x57" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/') }}assets/front/images/favicon.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/') }}assets/front/images/favicon.png">
         @yield('meta')
 
 
@@ -263,19 +263,7 @@
                 </div>
             </div>
         </div>
-        <!-- /.footer-bottom -->
-        <div class="footer-credit">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-md-12">
-                        <p class="texts-right">
-                            Design & Developed by <a href="#">Anik Rifat</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </footer>
 
 

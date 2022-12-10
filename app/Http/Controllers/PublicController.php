@@ -11,7 +11,7 @@ class PublicController extends Controller
     public function index()
     {
         $category = Category::where('status', 1)->get();
-        $news = News::where('status', 1)->get();
+        $news = News::where('status', 1)->orderBy('id', 'DESC')->get();
 
         return view('front.pages.index', compact('category', 'news'));
     }
