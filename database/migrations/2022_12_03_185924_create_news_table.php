@@ -25,7 +25,7 @@ return new class extends Migration
             $table->longText('content');
             $table->string('image');
             $table->string('primary_image')->nullable();
-            $table->string('secondary_image')->nullable();
+            $table->string('social_image')->nullable();
             $table->string('status')->default('1')->comment('1->active,0->inactive');
             $table->string('datetime')->nullable();
             $table->timestamps();

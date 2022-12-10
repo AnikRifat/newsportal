@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicController;
@@ -22,11 +23,11 @@ Route::get('/category/{category}', [PublicController::class, 'category'])->name(
 Route::get('/news/{news}', [PublicController::class, 'news'])->name('news');
 
 
+
 Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.pages.index');
     });
-
     //Category-routes....
     Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');

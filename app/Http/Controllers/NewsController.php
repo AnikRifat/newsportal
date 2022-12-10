@@ -85,16 +85,16 @@ class NewsController extends Controller
             $image->save($filelink, 50);
             $input['primary_image'] = asset('') . $filelink;
         }
-        if ($img = $request->file('secondary_image')) {
+        if ($img = $request->file('social_image')) {
             $image = Image::make($img)->resize(600, 600, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
             $filePath = 'uploads/images/news/';
-            $setImage = 'mpnews_secondary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
-            $input['secondary_image'] = asset('') . $filelink;
+            $input['social_image'] = asset('') . $filelink;
         }
 
         $input['news_id'] = $news_id;
@@ -177,18 +177,18 @@ class NewsController extends Controller
             unset($input['primary_image']);
         }
 
-        if ($img = $request->file('secondary_image')) {
+        if ($img = $request->file('social_image')) {
             $image = Image::make($img)->resize(600, 400, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
             $filePath = 'uploads/images/news/';
-            $setImage = 'mpnews_secondary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
-            $input['secondary_image'] = asset('') . $filelink;
+            $input['social_image'] = asset('') . $filelink;
         } else {
-            unset($input['secondary_image']);
+            unset($input['social_image']);
         }
         $input['category_name'] = Category::find($request->category_id);
 

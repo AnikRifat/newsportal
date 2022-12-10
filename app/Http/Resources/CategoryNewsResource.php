@@ -15,12 +15,17 @@ class CategoryNewsResource extends JsonResource
      */
     public function toArray($request)
     {
-        $news = News::where('category_id', $this->id)->get();
         return [
-            'id' => $this->id,
             'key' => $this->key,
-            'name' => $this->name,
-            'news' => $news,
+            'category_name' => $this->category_name,
+            'title' => $this->title,
+            'subtitle' => $this->subtitle,
+            'author' => $this->author,
+            'content' => $this->content,
+            'image' => $this->image,
+            'primary_image' => $this->primary_image,
+            'social_image' => $this->social_image,
+            'datetime' => $this->datetime,
         ];
     }
 }

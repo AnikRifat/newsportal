@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'id' => '1',
             'name' => 'Admin',
             'email' => 'admin@admin.com',
-            'password' => '$2y$10$kWqJ/wyGHwzIcsmHYfgqG.wClUfgthY8lTqRtSNTGu9mEGDxQ14su',
+            'password' => '$2y$10$kWqJ/wyGHwzIcsmHYfgqG.wClUfgthY8lTqRtSNTGu9mEGDxQ14su', //password
             'type' => 0,
 
         ]);

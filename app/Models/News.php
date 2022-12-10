@@ -20,7 +20,7 @@ class News extends Model
         'content',
         'image',
         'primary_image',
-        'secondary_image',
+        'social_image',
         'status',
         'datetime',
 

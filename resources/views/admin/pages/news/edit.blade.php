@@ -88,8 +88,8 @@
                         </div>
                         <div class="form-group m-b-40">
                             <h4 class="card-title">News secondary Image</h4>
-                            <input type="file" id="secondary_image" name="secondary_image" class="dropify"
-                              data-max-file-size="500k" data-default-file="{{ $news->secondary_image }}" />
+                            <input type="file" id="social_image" name="social_image" class="dropify"
+                              data-max-file-size="500k" data-default-file="{{ $news->social_image }}" />
                         </div>
                     </div>
                     <div class="form-actions">
