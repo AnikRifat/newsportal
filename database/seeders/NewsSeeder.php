@@ -28,7 +28,6 @@ class NewsSeeder extends Seeder
             'image' => 'http://localhost/news/uploads/images/news/demo.png',
             'status' => '2',
             'datetime' => '০৩ ডিসেম্বর, ২০২২',
-            'breaking_news' => false,
 
         ]);
     }

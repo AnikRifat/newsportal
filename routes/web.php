@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BreakingNewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicController;
@@ -58,6 +59,16 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/news/destroy/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
         Route::get('/news/active/{news}', [NewsController::class, 'active'])->name('news.active');
         Route::get('/news/inactive/{news}', [NewsController::class, 'inactive'])->name('news.inactive');
+
+        //breakingnews-routes....
+
+        Route::get('/breakingNews/index', [BreakingNewsController::class, 'index'])->name('breakingNews.index');
+        Route::get('/breakingNews/create', [BreakingNewsController::class, 'create'])->name('breakingNews.create');
+        Route::get('/breakingNews/edit/{breakingNews}', [BreakingNewsController::class, 'edit'])->name('breakingNews.edit');
+        Route::post('/breakingNews/store', [BreakingNewsController::class, 'store'])->name('breakingNews.store');
+        Route::get('/breakingNews/destroy/{breakingNews}', [BreakingNewsController::class, 'destroy'])->name('breakingNews.destroy');
+        Route::get('/breakingNews/active/{breakingNews}', [BreakingNewsController::class, 'active'])->name('breakingNews.active');
+        Route::get('/breakingNews/inactive/{breakingNews}', [BreakingNewsController::class, 'inactive'])->name('breakingNews.inactive');
     });
 
 

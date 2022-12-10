@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BreakingNewsSeeder extends Seeder
 {
@@ -14,6 +16,18 @@ class BreakingNewsSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('breaking_news')->insert([
+
+            'key' => Str::random(10),
+            'news_id' => '#mp-202212032137145',
+            'category_id' => '1',
+            'category_name' => 'রাজনিতী',
+            'author' => 'Admin',
+            'title' => 'ঢাকা বিশ্ববিদ্যালয় ক্যাম্পাসে গাড়ির নিচে চাপা পড়ে মারা যাওয়া রুবিনা আক্তারের মরদেহ শনিবার তেজগাঁওয়ের বাসায় নেওয়ার পর তাঁর একমাত্র ছেলে আরাফাত রহমানকে জড়িয়ে ধরে কান্নায় ভেঙে পড়েন রুবিনার ভাই জাকির হোসেন',
+            'content' => '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>',
+            'image' => 'http://localhost/news/uploads/images/news/demo.png',
+            'datetime' => '11 ডিসেম্বর, ২০২২'
+
+        ]);
     }
 }

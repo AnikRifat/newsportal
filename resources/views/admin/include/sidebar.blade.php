@@ -4,7 +4,7 @@
         <!-- User Profile-->
         <div class="user-profile">
             <div class="user-pro-body">
-                
+
             </div>
         </div>
         <!-- Sidebar navigation-->
@@ -68,6 +68,25 @@
                     </ul>
                 </li>
                 @if(Auth::user()->type == 0)
+
+                <li>
+                    <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                        <i class="ti-align-left"></i>
+                        <span class="hide-menu">Breaking News</span>
+                    </a>
+                    <ul aria-expanded="false" class="collapse">
+                        <li>
+                            <a href="{{ route('breakingNews.create') }}">Create Breaking News</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('breakingNews.index') }}">View Breaking News</a>
+                        </li>
+
+
+
+                    </ul>
+                </li>
+
                 <li>
                     <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i class="ti-align-left"></i>

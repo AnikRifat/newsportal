@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('breaking_news', function (Blueprint $table) {
             $table->id();
             $table->string('news_id')->unique();
             $table->string('key');
@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('image');
             $table->string('primary_image')->nullable();
             $table->string('social_image')->nullable();
-            $table->string('status')->default('2')->comment('1->active,0->inactive');
+            $table->string('status')->default('1')->comment('1->active,0->inactive');
             $table->string('datetime')->nullable();
             $table->timestamps();
         });
@@ -39,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('breaking_news');
     }
 };
