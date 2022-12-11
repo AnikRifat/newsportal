@@ -18,7 +18,7 @@
   <link href="{{ asset('/assets') }}/node_modules/toast-master/css/jquery.toast.css" rel="stylesheet">
   <!-- floating-label css -->
   <link href="{{ asset('/assets') }}/dist/css/pages/floating-label.css" rel="stylesheet">
-  //datatsable
+
   <link rel="stylesheet" type="text/css"
     href="{{ asset('/assets') }}/node_modules/datatables.net-bs4/css/dataTables.bootstrap4.css">
   <link rel="stylesheet" type="text/css"
