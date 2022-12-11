@@ -20,6 +20,14 @@ class ApiController extends Controller
 
         return CategoryResource::collection($category);
     }
+    public function menu()
+    {
+        $category = Category::where('status', 1)->get();
+        return response()->json([
+            'status' => true,
+            'menu' => $category,
+        ]);
+    }
 
     public function categoryItem($categoryName)
     {
@@ -46,7 +54,11 @@ class ApiController extends Controller
         $breakingNews = BreakingNews::where('status', 1)->orderBy('id', 'DESC')->take(10)->get();
         return BreakingNewsResource::collection($breakingNews);
     }
-
+    public function breakingNewsDetails($key)
+    {
+        $breakingNews = BreakingNews::where('status', 1)->where('key', $key)->get();
+        return BreakingNewsResource::collection($breakingNews);
+    }
     public function website()
     {
         $website = Website::find(1);

@@ -30,10 +30,13 @@ Route::get('/category/{categoryName}', [ApiController::class, 'categoryItem']);
 Route::get('/category/{categoryName}/{newsKey}', [ApiController::class, 'news']);
 
 Route::get('/breakingNews', [ApiController::class, 'breakingNews']);
-Route::get('/website', [ApiController::class, 'website']);
+Route::get('/breakingNews/{key}', [ApiController::class, 'breakingNewsDetails']);
 
 Route::get('/news', [NewsController::class, 'news']);
-Route::get('/news/{news}', [NewsController::class, 'newsDetails']);
+Route::get('/news/{newskey}', [NewsController::class, 'newsDetails']);
+
+Route::get('/menu', [ApiController::class, 'menu']);
+Route::get('/website', [ApiController::class, 'website']);
 
 Route::post('/comment/store', [CommentController::class, 'store']);
 // Route::get('/category/{category}', [CategoryController::class, 'show']);
