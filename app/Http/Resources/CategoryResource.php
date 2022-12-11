@@ -21,7 +21,7 @@ class CategoryResource extends JsonResource
             'id' => $this->id,
             'key' => $this->key,
             'name' => $this->name,
-            'news' => $news,
+            'news' => NewsResource::collection($news),
         ];
     }
 }

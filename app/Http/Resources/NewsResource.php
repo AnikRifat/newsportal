@@ -3,10 +3,9 @@
 namespace App\Http\Resources;
 
 use App\Models\Comment;
-use App\Models\News;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryNewsResource extends JsonResource
+class NewsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

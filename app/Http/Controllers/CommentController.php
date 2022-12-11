@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CommentController extends Controller
 {
@@ -35,7 +36,29 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'news_key' => 'required',
+            'name' => 'required',
+            'comment' => 'required',
+        ]);
+
+        $input = $request->all();
+        $input['key'] = Str::random(10);
+        // return response($input);
+
+        if (Comment::create($input)) {
+            return response()->json([
+                'status' => 'true',
+                'massage' => 'Comment Added Successfully',
+                'data' => $input,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 'false',
+                'massage' => 'Something Wrong!',
+            ]);
+        }
     }
 
     /**

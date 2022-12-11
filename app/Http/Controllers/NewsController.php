@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\NewsResource;
 use App\Models\Category;
 use App\Models\News;
 use Illuminate\Http\Request;
@@ -19,8 +20,14 @@ class NewsController extends Controller
 
         return response()->json([
             'status' => true,
-            'news' => $news,
+            'news' => NewsResource::collection($news),
         ]);
+    }
+    public function newsDetails($key)
+    {
+        $news = News::where('key', $key)->orderBy('id', 'DESC')->get();
+
+        return NewsResource::collection($news);
     }
 
     /**

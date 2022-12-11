@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsController;
 use App\Http\Resources\Category;
 use App\Http\Resources\CategoryResource;
@@ -25,9 +26,14 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/category', [ApiController::class, 'category']);
-Route::get('/{categoryName}/{newsKey}', [ApiController::class, 'news']);
+Route::get('/category/{categoryName}', [ApiController::class, 'categoryItem']);
+Route::get('/category/{categoryName}/{newsKey}', [ApiController::class, 'news']);
 
 Route::get('/breakingNews', [ApiController::class, 'breakingNews']);
 Route::get('/website', [ApiController::class, 'website']);
 
+Route::get('/news', [NewsController::class, 'news']);
+Route::get('/news/{news}', [NewsController::class, 'newsDetails']);
+
+Route::post('/comment/store', [CommentController::class, 'store']);
 // Route::get('/category/{category}', [CategoryController::class, 'show']);
