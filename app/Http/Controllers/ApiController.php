@@ -8,6 +8,7 @@ use App\Http\Resources\CategoryResource;
 use App\Models\BreakingNews;
 use App\Models\Category;
 use App\Models\News;
+use App\Models\Website;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -34,5 +35,11 @@ class ApiController extends Controller
     {
         $breakingNews = BreakingNews::where('status', 1)->orderBy('id', 'DESC')->take(10)->get();
         return BreakingNewsResource::collection($breakingNews);
+    }
+
+    public function website()
+    {
+        $website = Website::find(1);
+        return response($website);
     }
 }

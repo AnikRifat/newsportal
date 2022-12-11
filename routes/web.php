@@ -4,8 +4,10 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BreakingNewsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -69,6 +71,16 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/breakingNews/destroy/{breakingNews}', [BreakingNewsController::class, 'destroy'])->name('breakingNews.destroy');
         Route::get('/breakingNews/active/{breakingNews}', [BreakingNewsController::class, 'active'])->name('breakingNews.active');
         Route::get('/breakingNews/inactive/{breakingNews}', [BreakingNewsController::class, 'inactive'])->name('breakingNews.inactive');
+
+
+
+        //website-settings route
+        Route::get('/website', [WebsiteController::class, 'index'])->name('website.index');
+        Route::put('/website/update/{website}', [WebsiteController::class, 'update'])->name('website.update');
+
+        //contact-settings route
+        Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact.index');
+        Route::put('/contact/update/{website}', [WebsiteController::class, 'contactUpdate'])->name('contact.update');
     });
 
 

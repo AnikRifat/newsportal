@@ -3,11 +3,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="">
+  <meta name="description" content="{{ $content->description }}">
+  <meta name="author" content="{{ $content->name }}">
   <!-- Favicon icon -->
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets') }}/images/favicon.png">
-  <title>Elite Admin Template - The Ultimate Multipurpose admin template</title>
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ $content->favicon }}">
+  <title>{{ $content->name }}</title>
   <!-- This page CSS -->
   <!-- chartist CSS -->
   <link href="{{ asset('/assets') }}/node_modules/morrisjs/morris.css" rel="stylesheet">
