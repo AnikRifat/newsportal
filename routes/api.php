@@ -33,6 +33,7 @@ Route::get('/breakingNews', [ApiController::class, 'breakingNews']);
 Route::get('/breakingNews/{key}', [ApiController::class, 'breakingNewsDetails']);
 
 Route::get('/news', [NewsController::class, 'news']);
+Route::get('/leatest-news', [NewsController::class, 'leatestNews']);
 Route::get('/news/{newskey}', [NewsController::class, 'newsDetails']);
 
 Route::get('/menu', [ApiController::class, 'menu']);

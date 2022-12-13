@@ -16,8 +16,9 @@ class CategoryNewsResource extends JsonResource
      */
     public function toArray($request)
     {
-        $comments = Comment::where('news_key', $this->key)->get();
+        $comments = Comment::where('news_key', $this->key)->orderBy('id', 'DESC')->get();
         return [
+            'id' => $this->id,
             'key' => $this->key,
             'category_name' => $this->category_name,
             'title' => $this->title,

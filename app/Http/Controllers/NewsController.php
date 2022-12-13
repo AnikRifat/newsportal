@@ -29,7 +29,15 @@ class NewsController extends Controller
 
         return NewsResource::collection($news);
     }
+    public function leatestNews()
+    {
+        $news = News::where('status', 1)->orderBy('id', 'DESC')->take(20)->get();
 
+        return response()->json([
+            'status' => true,
+            'news' => NewsResource::collection($news),
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *

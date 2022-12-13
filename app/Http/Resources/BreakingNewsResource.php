@@ -17,6 +17,7 @@ class BreakingNewsResource extends JsonResource
     {
         // $news = BreakingNews::where('status', 1)->get();
         return [
+            'id' => $this->id,
             'key' => $this->key,
             'category_name' => $this->category_name,
             'title' => $this->title,
