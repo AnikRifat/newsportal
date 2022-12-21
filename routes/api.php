@@ -4,6 +4,8 @@ use App\Http\Controllers\ApiController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PhotoController;
+use App\Http\Controllers\VideoController;
 use App\Http\Resources\Category;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category as ModelsCategory;
@@ -32,9 +34,21 @@ Route::get('/category/{categoryName}/{newsKey}', [ApiController::class, 'news'])
 Route::get('/breakingNews', [ApiController::class, 'breakingNews']);
 Route::get('/breakingNews/{key}', [ApiController::class, 'breakingNewsDetails']);
 
+
+Route::get('/photo', [PhotoController::class, 'photo']);
+Route::get('/leatest-photo', [PhotoController::class, 'leatestphoto']);
+Route::get('/photo/{photokey}', [PhotoController::class, 'photoDetails']);
+
+
+Route::get('/video', [VideoController::class, 'video']);
+Route::get('/leatest-video', [VideoController::class, 'leatestvideo']);
+Route::get('/video/{videokey}', [VideoController::class, 'videoDetails']);
+
+
 Route::get('/news', [NewsController::class, 'news']);
 Route::get('/leatest-news', [NewsController::class, 'leatestNews']);
 Route::get('/news/{newskey}', [NewsController::class, 'newsDetails']);
+
 
 Route::get('/menu', [ApiController::class, 'menu']);
 Route::get('/website', [ApiController::class, 'website']);

@@ -81,11 +81,7 @@
                             <input type="file" id="primary_image" name="primary_image" class="dropify"
                               data-max-file-size="500k" />
                         </div>
-                        <div class="form-group m-b-40">
-                            <h4 class="card-title">breakingNews secondary Image</h4>
-                            <input type="file" id="social_image" name="social_image" class="dropify"
-                              data-max-file-size="500k" />
-                        </div>
+
                     </div>
                     <div class="form-actions">
                         <button type="submit" class="btn btn-success text-white"> <i class="fa fa-check"></i>

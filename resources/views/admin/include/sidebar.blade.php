@@ -121,6 +121,34 @@
             <li>
                 <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                     <i class="ti-align-left"></i>
+                    <span class="hide-menu">photo</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                    <li>
+                        <a href="{{ route('photo.create') }}">Create photo</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('photo.index') }}">View photo</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                    <i class="ti-align-left"></i>
+                    <span class="hide-menu">video</span>
+                </a>
+                <ul aria-expanded="false" class="collapse">
+                    <li>
+                        <a href="{{ route('video.create') }}">Create video</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('video.index') }}">View video</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                    <i class="ti-align-left"></i>
                     <span class="hide-menu">Settings</span>
                 </a>
                 <ul aria-expanded="false" class="collapse">

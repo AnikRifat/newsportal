@@ -2,41 +2,43 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\NewsResource;
 use App\Models\Category;
-use App\Models\News;
+use App\Models\Photo;
 use App\Models\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Str;
 
-class NewsController extends Controller
+class PhotoController extends Controller
 {
 
 
-    public function news()
+    public function photo()
     {
-        $news = News::where('status', 1)->orderBy('id', 'DESC')->get();
+        $photos = Photo::where('status', 1)->orderBy('id', 'DESC')->get();
 
         return response()->json([
             'status' => true,
-            'news' => NewsResource::collection($news),
+            'photo' => $photos,
         ]);
     }
-    public function newsDetails($key)
+    public function photoDetails($key)
     {
-        $news = News::where('key', $key)->orderBy('id', 'DESC')->get();
-
-        return NewsResource::collection($news);
-    }
-    public function leatestNews()
-    {
-        $news = News::where('status', 1)->orderBy('id', 'DESC')->take(20)->get();
+        $photo = Photo::where('key', $key)->get();
 
         return response()->json([
             'status' => true,
-            'news' => NewsResource::collection($news),
+            'photo' => $photo,
+        ]);
+    }
+    public function leatestPhoto()
+    {
+        $photo = Photo::where('status', 1)->orderBy('id', 'DESC')->take(20)->get();
+
+        return response()->json([
+            'status' => true,
+            'photo' => $photo,
         ]);
     }
     /**
@@ -46,18 +48,11 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::where('author', Auth::user()->name)->orderBy('id', 'DESC')->get();;
-        $newsAll = News::orderBy('id', 'DESC')->get();
+        $photos = Photo::orderBy('id', 'DESC')->get();
 
-        return view('admin.pages.news.index', compact('news', 'newsAll'));
+        return view('admin.pages.photo.index', compact('photos'));
     }
-    public function pending()
-    {
-        $news = News::where('author', Auth::user()->name)->where('status', 2)->orderBy('id', 'DESC')->get();
-        $newsAll = News::where('status', 2)->orderBy('id', 'DESC')->get();
 
-        return view('admin.pages.news.pending', compact('news', 'newsAll'));
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -66,8 +61,7 @@ class NewsController extends Controller
     public function create()
     {
         // dd();
-        $category = Category::all();
-        return view('admin.pages.news.create', compact('category'));
+        return view('admin.pages.photo.create');
     }
 
     /**
@@ -79,11 +73,11 @@ class NewsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'image' => 'required',
+            'title',
+            'content',
+            'image',
         ]);
-        $news_id = '#mp-' . date('YmdHis');
+        $photo_id = '#mp-' . date('YmdHis');
         $datetime = bangla_date(time(), "en");
 
         $input = $request->all();
@@ -92,24 +86,14 @@ class NewsController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $filePath = 'uploads/images/news/';
-            $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/photo/';
+            $setImage = 'mpphoto_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
             $input['image'] = asset('') . $filelink;
             // dd($input['image']);
         }
-        if ($img = $request->file('primary_image')) {
-            $image = Image::make($img)->resize(600, 600, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-            $filePath = 'uploads/images/news/';
-            $setImage = 'mpnews_primary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
-            $filelink = $filePath . $setImage;
-            $image->save($filelink, 50);
-            $input['primary_image'] = asset('') . $filelink;
-        }
+
         if ($img = $request->file('image')) {
             $image = Image::make($img)->resize(600, 400, function ($constraint) {
                 // $constraint->aspectRatio();
@@ -117,22 +101,21 @@ class NewsController extends Controller
             });
             $mask = Sponsor::find(1)->social;
             $image->insert($mask);
-            $filePath = 'uploads/images/news/';
-            $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/photo/';
+            $setImage = 'mpphoto_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
             $input['social_image'] = asset('') . $filelink;
         }
 
-        $input['news_id'] = $news_id;
+        $input['photo_id'] = $photo_id;
 
-        $input['category_name'] = Category::find($request->category_id)->name;
         $input['key'] = Str::random(10);
         $input['datetime'] = $datetime;
 
 
-        if (News::create($input)) {
-            return redirect()->route('news.index')->with('success', 'news Added successfully.');
+        if (Photo::create($input)) {
+            return redirect()->route('photo.index')->with('success', 'photo Added successfully.');
         } else {
             return back()->with('error', 'Error.');
         }
@@ -141,42 +124,41 @@ class NewsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show(Photo $photo)
     {
         return response()->json([
             'status' => true,
-            'news' => $news,
+            'photo' => $photo,
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function edit(News $news)
+    public function edit(Photo $photo)
     {
 
-        $category = Category::all();
-        return view('admin.pages.news.edit', compact('news', 'category'));
+        return view('admin.pages.photo.edit', compact('photo'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, Photo $photo)
     {
         $request->validate([
-            'title' => 'required',
-            'content' => 'required',
+            'title',
+            'content',
         ]);
         $input = $request->all();
         if ($img = $request->file('image')) {
@@ -184,8 +166,8 @@ class NewsController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $filePath = 'uploads/images/news/';
-            $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/photo/';
+            $setImage = 'mpphoto_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
             $input['image'] = asset('') . $filelink;
@@ -198,8 +180,8 @@ class NewsController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $filePath = 'uploads/images/news/';
-            $setImage = 'mpnews_primary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/photo/';
+            $setImage = 'mpphoto_primary_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
             $input['primary_image'] = asset('') . $filelink;
@@ -215,20 +197,19 @@ class NewsController extends Controller
             $mask = Sponsor::find(1)->social;
             // $img->insert($mask->social, 'bottom');
             $image->insert($mask);
-            $filePath = 'uploads/images/news/';
-            $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/photo/';
+            $setImage = 'mpphoto_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 50);
             $input['social_image'] = asset('') . $filelink;
         } else {
             unset($input['social_image']);
         }
-        $input['category_name'] = Category::find($request->category_id)->name;
-        if (!$news->key) {
+        if (!$photo->key) {
             $input['key'] = Str::random(10);
         }
-        if ($news->update($input)) {
-            return redirect()->route('news.index')->with('success', 'news Updated successfully.');
+        if ($photo->update($input)) {
+            return redirect()->route('photo.index')->with('success', 'photo Updated successfully.');
         } else {
             return back()->with('error', 'Error.');
         }
@@ -237,13 +218,13 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(Photo $photo)
     {
-        if ($news->delete()) {
-            return redirect()->route('news.index')->with('success', 'news deleted successfully.');
+        if ($photo->delete()) {
+            return redirect()->route('photo.index')->with('success', 'photo deleted successfully.');
         } else {
             return back()->with('error', 'Error.');
         }
@@ -254,13 +235,13 @@ class NewsController extends Controller
      * Active the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function Active(Request $request, News $news)
+    public function Active(Request $request, Photo $photo)
     {
-        if ($news->update(['status' => 1])) {
-            return redirect()->route('news.index')->with('success', 'news Activated successfully.');
+        if ($photo->update(['status' => 1])) {
+            return redirect()->route('photo.index')->with('success', 'photo Activated successfully.');
         } else {
             return back()->with('error', 'error.');
         }
@@ -269,13 +250,13 @@ class NewsController extends Controller
      * Inactive  the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\News  $news
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function Inactive(Request $request, News $news)
+    public function Inactive(Request $request, Photo $photo)
     {
-        if ($news->update(['status' => 0])) {
-            return redirect()->route('news.index')->with('success', 'news Deactivated successfully.');
+        if ($photo->update(['status' => 0])) {
+            return redirect()->route('photo.index')->with('success', 'photo Deactivated successfully.');
         } else {
             return back()->with('error', 'error.');
         }

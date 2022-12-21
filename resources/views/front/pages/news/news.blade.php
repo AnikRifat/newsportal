@@ -6,9 +6,9 @@
 <meta property="og:description" content="{{ $item->title }}" />
 <meta name="twitter:title" content="{{ $item->title }}" />
 <meta name="twitter:description" content="{{ $item->title }}" />
-<meta property="og:image" content="{{ $item->image }}" />
-<meta name="twitter:image" content="{{ $item->image }}" />
-<meta name="twitter:image:src" content="{{ $item->image }}" />
+<meta property="og:image" content="{{ $item->social_image }}" />
+<meta name="twitter:image" content="{{ $item->social_image }}" />
+<meta name="twitter:image:src" content="{{ $item->social_image }}" />
 @endsection
 @section('content')
 <section class="wp-news_single-post">

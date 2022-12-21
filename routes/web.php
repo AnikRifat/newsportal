@@ -6,8 +6,10 @@ use App\Http\Controllers\BreakingNewsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,14 +46,26 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/author/destroy/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
 
         //photo-routes....
-        Route::get('/photo/index', [photoController::class, 'index'])->name('photo.index');
-        Route::get('/photo/create', [photoController::class, 'create'])->name('photo.create');
-        Route::post('/photo/store', [photoController::class, 'store'])->name('photo.store');
-        Route::get('/photo/edit/{photo}', [photoController::class, 'edit'])->name('photo.edit');
-        Route::put('/photo/update/{photo}', [photoController::class, 'update'])->name('photo.update');
-        Route::get('/photo/destroy/{photo}', [photoController::class, 'destroy'])->name('photo.destroy');
-        Route::get('/photo/active/{photo}', [photoController::class, 'active'])->name('photo.active');
-        Route::get('/photo/inactive/{photo}', [photoController::class, 'inactive'])->name('photo.inactive');
+        Route::get('/photo/index', [PhotoController::class, 'index'])->name('photo.index');
+        Route::get('/photo/create', [PhotoController::class, 'create'])->name('photo.create');
+        Route::post('/photo/store', [PhotoController::class, 'store'])->name('photo.store');
+        Route::get('/photo/edit/{photo}', [PhotoController::class, 'edit'])->name('photo.edit');
+        Route::put('/photo/update/{photo}', [PhotoController::class, 'update'])->name('photo.update');
+        Route::get('/photo/destroy/{photo}', [PhotoController::class, 'destroy'])->name('photo.destroy');
+        Route::get('/photo/active/{photo}', [PhotoController::class, 'active'])->name('photo.active');
+        Route::get('/photo/inactive/{photo}', [PhotoController::class, 'inactive'])->name('photo.inactive');
+
+        //video-routes....
+        Route::get('/video/index', [VideoController::class, 'index'])->name('video.index');
+        Route::get('/video/create', [VideoController::class, 'create'])->name('video.create');
+        Route::post('/video/store', [VideoController::class, 'store'])->name('video.store');
+        Route::get('/video/edit/{video}', [VideoController::class, 'edit'])->name('video.edit');
+        Route::put('/video/update/{video}', [VideoController::class, 'update'])->name('video.update');
+        Route::get('/video/destroy/{video}', [VideoController::class, 'destroy'])->name('video.destroy');
+        Route::get('/video/active/{video}', [VideoController::class, 'active'])->name('video.active');
+        Route::get('/video/inactive/{video}', [VideoController::class, 'inactive'])->name('video.inactive');
+
+
 
 
         //Category-routes....
