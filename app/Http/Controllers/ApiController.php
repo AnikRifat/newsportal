@@ -17,7 +17,7 @@ class ApiController extends Controller
 {
     public function category()
     {
-        $category = Category::where('status', 1)->orderBy('id', 'DESC')->get();
+        $category = Category::where('status', 1)->get();
 
         return CategoryResource::collection($category);
     }
