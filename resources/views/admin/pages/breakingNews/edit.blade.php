@@ -34,8 +34,8 @@
                 <h3 class="m-b-0 text-dark">Edit breakingNews</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('breakingNews.update',$breakingNews->id) }}" method="POST" class="floating-labels"
-                  enctype="multipart/form-data">
+                <form action="{{ route('breakingNews.update',$breakingNews->id) }}" method="POST"
+                  class="floating-labels" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="form-body">
@@ -51,7 +51,8 @@
                             </select>
                         </div>
                         <div class="form-group m-b-40">
-                            <input type="text" class="form-control" name="title" id="title" value="{{ $breakingNews->title }}">
+                            <input type="text" class="form-control" name="title" id="title"
+                              value="{{ $breakingNews->title }}">
                             <span class="bar"></span>
                             <label for="title">breakingNews title</label>
                         </div>
@@ -65,7 +66,7 @@
 
                             <h5 for="content" class="m-b-3">breakingNews Content</h5>
                             <span class="bar"></span>
-                            <textarea class="form-control summernote" name="content" id="content">
+                            <textarea class="form-control" name="content" id="summernote">
                                 {!! $breakingNews->content !!}
                             </textarea>
                         </div>
@@ -99,17 +100,22 @@
 <!-- ============================================================== -->
 
 @section('script')
-<script src="{{ asset('/assets') }}/node_modules/summernote/dist/summernote-bs4.min.js"></script>
-<script>
-    $(function() {
 
-$('.summernote').summernote({
-    height: 350, // set editor height
-    minHeight: null, // set minimum height of editor
-    maxHeight: null, // set maximum height of editor
-    focus: false // set focus to editable area after initializing summernote
-});
-     })
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 500,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
 
 
      $(document).ready(function() {

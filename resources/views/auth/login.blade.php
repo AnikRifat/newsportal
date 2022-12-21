@@ -13,9 +13,9 @@
         <title>mpnews24bd</title>
 
         <!-- page css -->
-        <link href="{{ asset('/assets') }}/dist/css/pages/login-register-lock.css" rel="stylesheet">
+        <link href="{{ asset('/assets') }}/admin/dist/css/pages/login-register-lock.css" rel="stylesheet">
         <!-- Custom CSS -->
-        <link href="{{ asset('/assets') }}/dist/css/style.min.css" rel="stylesheet">
+        <link href="{{ asset('/assets') }}/admin/dist/css/style.min.css" rel="stylesheet">
 
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -88,9 +88,9 @@
         <!-- ============================================================== -->
         <!-- All Jquery -->
         <!-- ============================================================== -->
-        <script src="{{ asset('/assets') }}/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="{{ asset('/assets') }}/admin/node_modules/jquery/dist/jquery.min.js"></script>
         <!-- Bootstrap tether Core JavaScript -->
-        <script src="{{ asset('/assets') }}/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('/assets') }}/admin/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <!--Custom JavaScript -->
         <script type="text/javascript">
             $(function() {

@@ -42,8 +42,8 @@
                             <input type="text" class="form-control" name="author" id="author"
                               value="{{ Auth::user()->name }}" hidden>
                             <span class="bar"></span>
-                            <h4 for="author">news author : <span
-                                  class="text-danger">{{ Auth::user()->name }}</span></h4>
+                            <h4 for="author">news author : <span class="text-danger">{{ Auth::user()->name }}</span>
+                            </h4>
                         </div>
                         <div class="form-group m-b-40">
                             <h4 for="category">news Catyegory</h4>
@@ -69,7 +69,7 @@
 
                             <h5 for="content" class="m-b-3">News Content</h5>
                             <span class="bar"></span>
-                            <textarea class="form-control summernote" name="content" id="content"></textarea>
+                            <textarea class="form-control" name="content" id="summernote"></textarea>
                         </div>
                         <div class="form-group m-b-40">
                             <h4 class="card-title">News Image</h4>
@@ -100,17 +100,22 @@
 <!-- ============================================================== -->
 
 @section('script')
-<script src="{{ asset('/assets') }}/node_modules/summernote/dist/summernote-bs4.min.js"></script>
-<script>
-    $(function() {
 
-$('.summernote').summernote({
-    height: 350, // set editor height
-    minHeight: null, // set minimum height of editor
-    maxHeight: null, // set maximum height of editor
-    focus: false // set focus to editable area after initializing summernote
-});
-     })
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 500,
+        toolbar: [
+          ['style', ['style']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+      });
 
 
      $(document).ready(function() {
