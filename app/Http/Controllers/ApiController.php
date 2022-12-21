@@ -9,6 +9,7 @@ use App\Http\Resources\NewsResource;
 use App\Models\BreakingNews;
 use App\Models\Category;
 use App\Models\News;
+use App\Models\Sponsor;
 use App\Models\Website;
 use Illuminate\Http\Request;
 
@@ -65,6 +66,14 @@ class ApiController extends Controller
         return response()->json([
             'status' => true,
             'website' => $website,
+        ]);
+    }
+    public function sponsor()
+    {
+        $sponsor = Sponsor::find(1);
+        return response()->json([
+            'status' => true,
+            'sponsor' => $sponsor,
         ]);
     }
 }

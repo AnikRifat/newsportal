@@ -71,9 +71,6 @@ class SponsorController extends Controller
      */
     public function update(Request $request, Sponsor $sponsor)
     {
-
-
-
         $input = $request->all();
 
         if ($img = $request->file('top')) {
@@ -81,8 +78,8 @@ class SponsorController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $filePath = 'uploads/images/sponsor';
-            $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/sponsor/';
+            $setImage = 'mpnews_image_top' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 95);
             $input['top'] = asset('') . $filelink;
@@ -94,8 +91,8 @@ class SponsorController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $filePath = 'uploads/images/sponsor';
-            $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/sponsor/';
+            $setImage = 'mpnews_image_side_1' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 95);
             $input['side_1'] = asset('') . $filelink;
@@ -107,8 +104,8 @@ class SponsorController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $filePath = 'uploads/images/sponsor';
-            $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/sponsor/';
+            $setImage = 'mpnews_image_side_2' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 95);
             $input['side_2'] = asset('') . $filelink;
@@ -120,8 +117,8 @@ class SponsorController extends Controller
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $filePath = 'uploads/images/sponsor';
-            $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/sponsor/';
+            $setImage = 'mpnews_image_bottom' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 95);
             $input['bottom'] = asset('') . $filelink;
@@ -129,19 +126,19 @@ class SponsorController extends Controller
             unset($input['bottom']);
         }
         if ($img = $request->file('social')) {
-            $image = Image::make($img)->resize(1500, 444, function ($constraint) {
+            $image = Image::make($img)->resize(600, 400, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
-            $filePath = 'uploads/images/sponsor';
-            $setImage = 'mpnews_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filePath = 'uploads/images/sponsor/';
+            $setImage = 'mpnews_image_social' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
             $image->save($filelink, 95);
             $input['social'] = asset('') . $filelink;
         } else {
             unset($input['social']);
         }
-        // dd($input);
+        // dd($sponsor->update($input));
         if ($sponsor->update($input)) {
 
             return redirect()->route('sponsor.index')->with('success', 'sponsor edited successfully.');

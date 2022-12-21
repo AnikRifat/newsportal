@@ -129,6 +129,9 @@
                         <a href="{{ route('website.index') }}">website</a>
                     </li>
                     <li>
+                        <a href="{{ route('sponsor.index') }}">sponsor</a>
+                    </li>
+                    <li>
                         <a href="{{ route('contact.index') }}">contact</a>
                     </li>
                 </ul>

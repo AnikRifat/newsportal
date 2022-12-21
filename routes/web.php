@@ -43,6 +43,16 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::put('/author/update/{author}', [AuthorController::class, 'update'])->name('author.update');
         Route::get('/author/destroy/{author}', [AuthorController::class, 'destroy'])->name('author.destroy');
 
+        //photo-routes....
+        Route::get('/photo/index', [photoController::class, 'index'])->name('photo.index');
+        Route::get('/photo/create', [photoController::class, 'create'])->name('photo.create');
+        Route::post('/photo/store', [photoController::class, 'store'])->name('photo.store');
+        Route::get('/photo/edit/{photo}', [photoController::class, 'edit'])->name('photo.edit');
+        Route::put('/photo/update/{photo}', [photoController::class, 'update'])->name('photo.update');
+        Route::get('/photo/destroy/{photo}', [photoController::class, 'destroy'])->name('photo.destroy');
+        Route::get('/photo/active/{photo}', [photoController::class, 'active'])->name('photo.active');
+        Route::get('/photo/inactive/{photo}', [photoController::class, 'inactive'])->name('photo.inactive');
+
 
         //Category-routes....
         Route::get('/category/index', [CategoryController::class, 'index'])->name('category.index');
@@ -85,7 +95,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
         //sponsor-settings route
         Route::get('/sponsor', [SponsorController::class, 'index'])->name('sponsor.index');
-        Route::put('/sponsor/update/{website}', [SponsorController::class, 'Update'])->name('sponsor.update');
+        Route::put('/sponsor/update/{sponsor}', [SponsorController::class, 'Update'])->name('sponsor.update');
     });
 
 

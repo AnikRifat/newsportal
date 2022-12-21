@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\NewsResource;
 use App\Models\Category;
 use App\Models\News;
+use App\Models\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -109,11 +110,14 @@ class NewsController extends Controller
             $image->save($filelink, 50);
             $input['primary_image'] = asset('') . $filelink;
         }
+
         if ($img = $request->file('social_image')) {
-            $image = Image::make($img)->resize(600, 600, function ($constraint) {
+            $image = Image::make($img)->resize(600, 400, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
+            $mask = Sponsor::find(1);
+            $image->mask($mask->social);
             $filePath = 'uploads/images/news/';
             $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
@@ -157,6 +161,7 @@ class NewsController extends Controller
      */
     public function edit(News $news)
     {
+
         $category = Category::all();
         return view('admin.pages.news.edit', compact('news', 'category'));
     }
@@ -205,9 +210,12 @@ class NewsController extends Controller
 
         if ($img = $request->file('social_image')) {
             $image = Image::make($img)->resize(600, 400, function ($constraint) {
-                $constraint->aspectRatio();
+                // $constraint->aspectRatio();
                 $constraint->upsize();
             });
+            $mask = Sponsor::find(1)->social;
+            // $img->insert($mask->social, 'bottom');
+            $image->insert($mask);
             $filePath = 'uploads/images/news/';
             $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;

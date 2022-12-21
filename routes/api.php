@@ -38,6 +38,7 @@ Route::get('/news/{newskey}', [NewsController::class, 'newsDetails']);
 
 Route::get('/menu', [ApiController::class, 'menu']);
 Route::get('/website', [ApiController::class, 'website']);
+Route::get('/sponsor', [ApiController::class, 'sponsor']);
 
 Route::post('/comment/store', [CommentController::class, 'store']);
 // Route::get('/category/{category}', [CategoryController::class, 'show']);
