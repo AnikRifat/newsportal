@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\SponsorController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         //contact-settings route
         Route::get('/contact', [WebsiteController::class, 'contact'])->name('contact.index');
         Route::put('/contact/update/{website}', [WebsiteController::class, 'contactUpdate'])->name('contact.update');
+
+        //sponsor-settings route
+        Route::get('/sponsor', [SponsorController::class, 'index'])->name('sponsor.index');
+        Route::put('/sponsor/update/{website}', [SponsorController::class, 'Update'])->name('sponsor.update');
     });
 
 
