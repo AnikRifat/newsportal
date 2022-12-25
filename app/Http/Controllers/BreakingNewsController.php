@@ -168,20 +168,6 @@ class BreakingNewsController extends Controller
             unset($input['primary_image']);
         }
 
-        if (!$breakingNews->social_image) {
-            $img = $breakingNews->image;
-            $image = Image::make($img)->resize(600, 400, function ($constraint) {
-                // $constraint->aspectRatio();
-                $constraint->upsize();
-            });
-            $mask = Sponsor::find(1)->social;
-            $image->insert($mask);
-            $filePath = 'uploads/images/breakingNews/';
-            $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
-            $filelink = $filePath . $setImage;
-            $image->save($filelink, 50);
-            $input['social_image'] = asset('') . $filelink;
-        }
 
         if ($img = $request->file('image')) {
             $image = Image::make($img)->resize(600, 400, function ($constraint) {

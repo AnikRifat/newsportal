@@ -29,5 +29,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $content = Website::find(1);
         View::share('content', $content);
+
+        $leatestNews = News::take(10)->get();
+        View::share('leatestNews', $leatestNews);
     }
 }

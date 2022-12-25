@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BreakingNewsResource;
 use App\Http\Resources\CategoryNewsResource;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\CategorySlicedResource;
 use App\Http\Resources\NewsResource;
 use App\Models\BreakingNews;
 use App\Models\Category;
@@ -20,6 +21,12 @@ class ApiController extends Controller
         $category = Category::where('status', 1)->get();
 
         return CategoryResource::collection($category);
+    }
+    public function categorySlice()
+    {
+        $category = Category::where('status', 1)->get();
+
+        return CategorySlicedResource::collection($category);
     }
     public function menu()
     {
