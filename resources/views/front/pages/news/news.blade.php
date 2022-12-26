@@ -26,9 +26,17 @@
                         <div class="wp-news_single-content">
                             <div class="post-image ">
                                 <p class="post-image-details">{{ $item->title }}</p>
+                                {{-- <span>{{ $item->datetime }}</span> --}}
                                 <div class="text-center">
                                     <img src="{{ $item->image }}" alt="wpnews" class="img-fluid img-thumbnail">
+                                    <img src="{{ $sponsor->side_1 }}" alt="wpnews" class="img-fluid img-thumbnail">
                                 </div>
+                                @if($item->subtitle)
+                                <p class="bg-secondary text-light">
+                                    {{ $item->subtitle }}
+                                </p>
+                                @endif
+                                <img src="{{ $sponsor->side_2 }}" class="w-100" alt="">
                                 {{-- @if($item->primary_image)
                                 <img src="{{ $item->primary_image }}" alt="wpnews"
                                 class="max-auto img-fluid img-thumbnail">
