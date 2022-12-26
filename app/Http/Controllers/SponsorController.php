@@ -127,7 +127,7 @@ class SponsorController extends Controller
         }
         if ($img = $request->file('social')) {
             $image = Image::make($img)->resize(600, 400, function ($constraint) {
-                $constraint->aspectRatio();
+                // $constraint->aspectRatio();
                 $constraint->upsize();
             });
             $filePath = 'uploads/images/sponsor/';
