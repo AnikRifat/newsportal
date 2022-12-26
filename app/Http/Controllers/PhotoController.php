@@ -101,7 +101,7 @@ class PhotoController extends Controller
             });
             $mask = Sponsor::find(1)->social;
             $image->insert($mask);
-              $image->insert($mask, 'bottom', 50, 0);
+            $image->insert($mask, 'bottom', 50, 0);
             $filePath = 'uploads/images/photo/';
             $setImage = 'mpphoto_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
@@ -198,6 +198,7 @@ class PhotoController extends Controller
             $mask = Sponsor::find(1)->social;
             // $img->insert($mask->social, 'bottom');
             $image->insert($mask);
+            $image->insert($mask, 'bottom', 50, 0);
             $filePath = 'uploads/images/photo/';
             $setImage = 'mpphoto_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;

@@ -102,6 +102,7 @@ class VideoController extends Controller
             });
             $mask = Sponsor::find(1)->social;
             $image->insert($mask);
+            $image->insert($mask, 'bottom', 50, 0);
             $filePath = 'uploads/images/video/';
             $setImage = 'mpvideo_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
@@ -198,6 +199,7 @@ class VideoController extends Controller
             $mask = Sponsor::find(1)->social;
             // $img->insert($mask->social, 'bottom');
             $image->insert($mask);
+            $image->insert($mask, 'bottom', 50, 0);
             $filePath = 'uploads/images/video/';
             $setImage = 'mpvideo_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
