@@ -8,7 +8,7 @@
                         <a href="{{ route('index') }}">
                             <h1> <img src="{{ $content->logo }}" alt="mpnews" /><br /> </h1>
                         </a>
-                        <h5> The News Publisher For Everyone</h5>
+                        <h5> {{ bangla_date(time(), "en") }}</h5>
                     </div>
                     <!--/.logo-->
                 </div>
@@ -53,7 +53,7 @@
                             <a href="#">
                                 <h1> <img src="{{ $content->logo }}" alt="mpnews" /><br /> </h1>
                             </a>
-                            <h5> The News Publisher For Everyone</h5>
+                            <h5> {{ bangla_date(time(), "en") }}</h5>
                         </div>
                         <!--/.logo-->
                     </div>
@@ -90,7 +90,7 @@
                         <div class="row fly-menu-bottom">
                             <div class="col-xl-8 col-md-12 col-12">
                                 <div class="row">
-        
+
 
                                     <div class="col-xl-3 col-md-4 col-6 p-0">
                                         <a href="#">
@@ -101,12 +101,6 @@
                                     <div class="col-xl-3 col-md-4 col-6 p-0">
                                         <a href="#">
                                             <span><i class="fas fa-video"></i></span>ভিডিও
-                                        </a>
-                                    </div>
-
-                                    <div class="col-xl-3 col-md-4 col-6 p-0">
-                                        <a href="archive.html">
-                                            <span><i class="fas fa-bullhorn"></i></span>বিজ্ঞাপন
                                         </a>
                                     </div>
 
@@ -140,7 +134,7 @@
                         <a href="#">
                             <h1> <img src="{{ $content->logo }}" alt="mpnews" /><br /> </h1>
                         </a>
-                        <h5> The News Publisher For Everyone</h5>
+                        <h5> {{ bangla_date(time(), "en") }}</h5>
                     </div>
                     <!--/.logo-->
                 </div>
@@ -194,13 +188,9 @@
     <div class="header-bottom-one margin-tb">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 ">
-                    <div class="date-area">
-                        <p> {{ bangla_date(time(), "en") }}</p>
-                    </div>
-                </div>
-                <div class="col-md-6 p-1">
-                    <div class="horizontal-ad-section">
+
+                <div class="col-md-12 ">
+                    <div class="horizontal-ad-section my-2">
 
                         <img src="{{ $sponsor->top }}" alt="mpnews">
                     </div>

@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\News;
+use App\Models\Photo;
 use App\Models\Sponsor;
+use App\Models\Video;
 use App\Models\Website;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\View;
@@ -49,5 +51,12 @@ class AppServiceProvider extends ServiceProvider
 
         $slicedCat = Category::take(9)->get();
         View::share('slicedCat', $slicedCat);
+
+
+        $topphoto = Photo::take(6)->orderBy('id', 'DESC')->get();
+        View::share('topphoto', $topphoto);
+
+        $topvideo = Video::take(6)->orderBy('id', 'DESC')->get();
+        View::share('topvideo', $topvideo);
     }
 }

@@ -83,7 +83,7 @@ class PhotoController extends Controller
         $input = $request->all();
         if ($img = $request->file('image')) {
             $image = Image::make($img)->resize(600, 400, function ($constraint) {
-                $constraint->aspectRatio();
+                // $constraint->aspectRatio();
                 $constraint->upsize();
             });
             $filePath = 'uploads/images/photo/';

@@ -91,6 +91,8 @@ body {
 
 .featured-post-title {
     padding: 10px 0 5px 0;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .featured-post-sm {
@@ -643,7 +645,7 @@ body {
 }
 
 .news-ticker .news-ticker-title {
-    background-color: #1e3042;
+    background-color: #0e81b6;
     font-size: 14px;
     height: 100%;
     color: #ffff;
@@ -731,7 +733,7 @@ body {
     font-size: 1.3rem;
     margin-bottom: 0.7rem;
     position: relative;
-    background-color: #1e3042;
+    background-color: #0e81b6;
     padding: 9px 0 3px 11px;
     color: #fff;
     border-left: 3px solid #e74c3c;
@@ -985,7 +987,7 @@ body {
 
 .top-section-one .nav-tabs .nav-link,
 .wp-news_single-post .nav-tabs .nav-link {
-    background-color: #1e3042;
+    background-color: #0e81b6;
     color: #fff;
     border: 0px solid #e74c3c;
 }
@@ -1012,8 +1014,8 @@ body {
 }
 
 .nav-tabs a.nav-link.active.top-tab-title {
-    background: #181818 !important;
-    color: #777777;
+    background: #104469 !important;
+    color: #ffffff;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1227,7 +1229,7 @@ button:active {
 }
 
 .footer-top {
-    background-color: #181818;
+    background-color: #185580;
     padding-top: 40px;
 }
 
@@ -1274,7 +1276,7 @@ ul.footer-link a:hover {
 
 /* /.footer bottom */
 .footer-bottom {
-    background-color: #181818;
+    background-color: #104469;
     padding: 40px 0;
 }
 
@@ -1357,4 +1359,33 @@ p.featured-post-title {
     font-weight: 800;
     line-height: 2;
     overflow: hidden;
+}
+
+.carousel-caption {
+    background: #1b618e;
+    width: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+h3.featured-post-details-sm {
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 5px;
+}
+
+.tab-title-mpnews h3 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.tab-thumbs-mpnews img {
+    height: 4rem;
+    width: 100%;
+}
+
+.featured-img.vide-post-img img {
+    height: 10rem;
+    width: 100%;
 }

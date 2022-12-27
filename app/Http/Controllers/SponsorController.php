@@ -100,7 +100,7 @@ class SponsorController extends Controller
             unset($input['side_1']);
         }
         if ($img = $request->file('side_2')) {
-            $image = Image::make($img)->resize(250, 250, function ($constraint) {
+            $image = Image::make($img)->resize(1500, 444, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
