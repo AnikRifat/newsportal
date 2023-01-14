@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BreakingNews;
 use App\Models\Category;
 use App\Models\Sponsor;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -53,7 +54,7 @@ class BreakingNewsController extends Controller
 
         $input = $request->all();
         if ($img = $request->file('image')) {
-            $image = Image::make($img)->resize(600, 400, function ($constraint) {
+            $image = Image::make($img)->resize(1200, 800, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
@@ -77,12 +78,9 @@ class BreakingNewsController extends Controller
         }
         if ($img = $request->file('image')) {
             $image = Image::make($img)->resize(600, 400, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
             });
             $mask = Sponsor::find(1)->social;
-            $image->insert($mask);
-            $image->insert($mask, 'bottom', 50, 0);
+            $image->insert($mask, 'bottom');
             $filePath = 'uploads/images/breakingNews/';
             $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
@@ -93,6 +91,7 @@ class BreakingNewsController extends Controller
         $input['news_id'] = $breakingNews_id;
 
         $input['category_name'] = Category::find($request->category_id)->name;
+        $input['tag_name'] = Tag::find($request->tag_id)->name;
         $input['key'] = Str::random(10);
         $input['datetime'] = $datetime;
 
@@ -142,7 +141,7 @@ class BreakingNewsController extends Controller
         ]);
         $input = $request->all();
         if ($img = $request->file('image')) {
-            $image = Image::make($img)->resize(600, 400, function ($constraint) {
+            $image = Image::make($img)->resize(1200, 800, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
@@ -156,7 +155,7 @@ class BreakingNewsController extends Controller
         }
 
         if ($img = $request->file('primary_image')) {
-            $image = Image::make($img)->resize(600, 400, function ($constraint) {
+            $image = Image::make($img)->resize(1200, 800, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
             });
@@ -172,12 +171,9 @@ class BreakingNewsController extends Controller
 
         if ($img = $request->file('image')) {
             $image = Image::make($img)->resize(600, 400, function ($constraint) {
-                // $constraint->aspectRatio();
-                $constraint->upsize();
             });
             $mask = Sponsor::find(1)->social;
-            $image->insert($mask);
-            $image->insert($mask, 'bottom', 50, 0);
+            $image->insert($mask, 'bottom');
             $filePath = 'uploads/images/breakingNews/';
             $setImage = 'mpnews_social_image' . date('YmdHis') . "." . $img->getClientOriginalExtension();
             $filelink = $filePath . $setImage;
@@ -187,6 +183,7 @@ class BreakingNewsController extends Controller
             unset($input['social_image']);
         }
         $input['category_name'] = Category::find($request->category_id)->name;
+        $input['tag_name'] = Tag::find($request->tag_id)->name;
         if (!$breakingNews->key) {
             $input['key'] = Str::random(10);
         }

@@ -6,8 +6,9 @@
     <section>
         @yield('content')
         <div class="horizontal-ad-section">
-
-            <img src="{{ $sponsor->bottom }}" alt="mpnews">
+            <a href="{{ $sponsor->bottom_link }}">
+                <img src="{{ $sponsor->bottom }}" alt="mpnews">
+            </a>
         </div>
 
     </section>

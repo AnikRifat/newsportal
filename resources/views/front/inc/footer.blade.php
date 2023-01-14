@@ -27,7 +27,7 @@
                     </div>
                     <!-- /.footer-logo -->
                 </div>
-                <div class="col-md-4 editor-area">
+                <div class="col-md-4 editor-area p-4">
                     <div class="footer-author-content">
                         <p class="editor-number">
                             <i class="fa fa-phone" aria-hidden="true"></i>
@@ -40,7 +40,7 @@
                     </div>
                     <!-- /.editor-area -->
                 </div>
-                <div class="col-md-4 footer-address">
+                <div class="col-md-4 footer-address  p-4">
                     <p class="footer-address-bn">
 
                         {{ $content->address }}

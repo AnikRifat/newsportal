@@ -12,6 +12,7 @@ class Video extends Model
         'video_id',
         'key',
         'title',
+        'reporter',
         'subtitle',
         'content',
         'thumbnail',

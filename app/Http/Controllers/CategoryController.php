@@ -114,11 +114,24 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $newsitems = News::where('category_id', $category->id)->get();
+        $newsitemscount = $newsitems->count();
+        // dd();
         // dd($category->name);
-        if (News::where('category_name', $category->name)->delete() && $category->delete()) {
-            return redirect()->route('category.index')->with('success', 'category deleted successfully.');
+        if ($newsitemscount > 0) {
+
+            if (News::where('category_id', $category->id)->delete() && $category->delete()) {
+                return redirect()->route('category.index')->with('success', 'category deleted successfully.');
+            } else {
+                dd('not posible');
+                return back()->with('error', 'Error.');
+            }
         } else {
-            return back()->with('error', 'Error.');
+            if ($category->delete()) {
+                return redirect()->route('category.index')->with('success', 'category deleted successfully.');
+            } else {
+                return back()->with('error', 'Error.');
+            }
         }
     }
 

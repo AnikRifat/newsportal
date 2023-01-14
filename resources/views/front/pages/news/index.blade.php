@@ -12,16 +12,15 @@
                         <h2>{{ $categoryname }}</h2>
                         <div class="row top-sec-middle my-5">
                             @foreach ($items as $item)
-                            <div class="col-md-4 col-6 p-1">
+                            <div class="col-md-4 col-6 p-1 cat-section-content">
                                 <a href="{{ route('news',$item->id) }}">
-                                    <div class="top-section-content featured-img">
-                                        <img class="img-thumbnail" src="{{ $item->image }}" alt="wpnews">
+                                    <div class="featured-img">
+                                        <img src="{{ $item->image }}" alt="mpnews">
                                     </div>
-                                    <div class="my-1">
-                                        <p class="featured-post-title">
-                                            {{ $item->title }}
-                                        </p>
-                                    </div>
+                                    <h3 class="featured-post-title">{{ $item->title }}</h3>
+
+                                    <p class="featured-post-subtitle">{{ $item->subtitle }}</p>
+
                                 </a>
                             </div>
                             @endforeach

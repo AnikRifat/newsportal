@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('category_id');
             $table->string('category_name');
             $table->string('title', 500);
+            $table->string('reporter', 2000)->default('সম্পাদকীয়')->nullable();
+
             $table->string('subtitle', 2000)->nullable();
             $table->string('author')->nullable();
             $table->longText('content');

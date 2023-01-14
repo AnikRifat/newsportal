@@ -126,7 +126,7 @@ class SponsorController extends Controller
             unset($input['bottom']);
         }
         if ($img = $request->file('social')) {
-            $image = Image::make($img)->resize(600, 400, function ($constraint) {
+            $image = Image::make($img)->resize(1200, 800, function ($constraint) {
                 // $constraint->aspectRatio();
                 $constraint->upsize();
             });

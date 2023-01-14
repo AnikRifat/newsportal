@@ -4,11 +4,13 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BreakingNewsController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Auth;
@@ -26,9 +28,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PublicController::class, 'index'])->name('index');
+Route::get('/photos', [PublicController::class, 'photos'])->name('photos');
+Route::get('/videos', [PublicController::class, 'videos'])->name('videos');
 Route::get('/category/{category}', [PublicController::class, 'category'])->name('category');
+Route::get('/tag/{tag}', [PublicController::class, 'tag'])->name('tag');
 Route::get('/news/{news}', [PublicController::class, 'news'])->name('news');
-
+Route::get('/video/{video}', [PublicController::class, 'videodetails'])->name('videodetails');
+Route::get('/photo/{photo}', [PublicController::class, 'photodetails'])->name('photodetails');
+Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
 
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {
@@ -65,6 +72,15 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/video/active/{video}', [VideoController::class, 'active'])->name('video.active');
         Route::get('/video/inactive/{video}', [VideoController::class, 'inactive'])->name('video.inactive');
 
+        //tag-routes....
+        Route::get('/tag/index', [TagController::class, 'index'])->name('tag.index');
+        Route::get('/tag/create', [TagController::class, 'create'])->name('tag.create');
+        Route::post('/tag/store', [TagController::class, 'store'])->name('tag.store');
+        Route::get('/tag/edit/{tag}', [TagController::class, 'edit'])->name('tag.edit');
+        Route::put('/tag/update/{tag}', [TagController::class, 'update'])->name('tag.update');
+        Route::get('/tag/destroy/{tag}', [TagController::class, 'destroy'])->name('tag.destroy');
+        Route::get('/tag/active/{tag}', [TagController::class, 'active'])->name('tag.active');
+        Route::get('/tag/inactive/{tag}', [TagController::class, 'inactive'])->name('tag.inactive');
 
 
 

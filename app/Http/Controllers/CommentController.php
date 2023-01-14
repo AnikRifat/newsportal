@@ -46,18 +46,9 @@ class CommentController extends Controller
         $input = $request->all();
         $input['key'] = Str::random(10);
         // return response($input);
-
+        // dd($input);
         if (Comment::create($input)) {
-            return response()->json([
-                'status' => 'true',
-                'massage' => 'Comment Added Successfully',
-                'data' => $input,
-            ]);
-        } else {
-            return response()->json([
-                'status' => 'false',
-                'massage' => 'Something Wrong!',
-            ]);
+            return back();
         }
     }
 

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\News;
 use App\Models\Photo;
 use App\Models\Sponsor;
+use App\Models\Tag;
 use App\Models\Video;
 use App\Models\Website;
 use Illuminate\Support\Arr;
@@ -37,26 +38,62 @@ class AppServiceProvider extends ServiceProvider
         $sponsor = Sponsor::find(1);
         View::share('sponsor', $sponsor);
 
-        $categoiesSec = Category::all();
+        $tags = Tag::where('status', 1)->get();
+        View::share('tags', $tags);
+
+        $photos = Photo::where('status', 1)->orderBy('id', 'DESC')->get();
+        View::share('photos', $photos);
+
+        $slicedphotos = Photo::where('status', 1)->take(5)->orderBy('id', 'DESC')->get();
+        View::share('slicedphotos', $slicedphotos);
+
+        $videos = Video::where('status', 1)->orderBy('id', 'DESC')->get();
+        View::share('videos', $videos);
+
+        $slicedvideos = Video::where('status', 1)->take(5)->orderBy('id', 'DESC')->get();
+        View::share('slicedvideos', $slicedvideos);
+
+
+        $randvideos = Video::where('status', 1)->inRandomOrder()->take(5)->orderBy('id', 'DESC')->get();
+        View::share('randvideos', $randvideos);
+
+        $randphotos = Photo::where('status', 1)->inRandomOrder()->take(5)->orderBy('id', 'DESC')->get();
+        View::share('randphotos', $randphotos);
+
+        $slicedtags = Tag::where('status', 1)->take(5)->orderBy('id', 'DESC')->get();
+        View::share('slicedtags', $slicedtags);
+
+        $categoiesSec = Category::where('status', 1)->get();
         View::share('categoiesSec', $categoiesSec);
 
-        $leatestNews = News::take(7)->orderBy('id', 'DESC')->get();
+        $leatestNews = News::where('status', 1)->take(8)->orderBy('id', 'DESC')->get();
         View::share('leatestNews', $leatestNews);
 
-        $randitems = News::inRandomOrder()->take(9)->orderBy('id', 'DESC')->get();
-        View::share('randitems', $randitems);
+        $leatestNews1 = News::where('status', 1)->take(4)->orderBy('id', 'DESC')->get();
+        View::share('leatestNews1', $leatestNews1);
 
-        $topnews = News::take(1)->orderBy('id', 'DESC')->get();
+        $leatestNews2 = News::where('status', 1)->inRandomOrder()->take(4)->orderBy('id', 'DESC')->get();
+        View::share('leatestNews2', $leatestNews2);
+
+        $mostread = News::where('status', 1)->inRandomOrder()->take(8)->orderBy('id', 'DESC')->get();
+        View::share('mostread', $mostread);
+
+
+        $topnews = News::where('status', 1)->orderBy('id', 'DESC')->first();
         View::share('topnews', $topnews);
 
-        $slicedCat = Category::take(9)->get();
+        $randitems = News::where('status', 1)->orderBy('id', 'DESC')->take(9)->where('id', '<', $topnews->id)->get();
+        View::share('randitems', $randitems);
+
+
+        $slicedCat = Category::where('status', 1)->take(14)->get();
         View::share('slicedCat', $slicedCat);
 
 
-        $topphoto = Photo::take(6)->orderBy('id', 'DESC')->get();
+        $topphoto = Photo::where('status', 1)->take(6)->orderBy('id', 'DESC')->get();
         View::share('topphoto', $topphoto);
 
-        $topvideo = Video::take(6)->orderBy('id', 'DESC')->get();
+        $topvideo = Video::where('status', 1)->take(6)->orderBy('id', 'DESC')->get();
         View::share('topvideo', $topvideo);
     }
 }
