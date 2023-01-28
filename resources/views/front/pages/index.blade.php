@@ -9,6 +9,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <a href="{{ $sponsor->top1_link }}">
+                        <img src="{{ $sponsor->top1 }}" class="w-100 m-2" alt="mpnews"></a>
+                </div>
+                <div class="col-md-12">
                     <div class="tranding-tag-gray"><span>আলোচিত :</span>
                         @foreach ($slicedtags as $item)
                         <a href="{{ route('tag',$item->id) }}">{{ $item->name }}</a>
@@ -54,7 +58,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <a href="{{ $sponsor->side_1_link }}">
-                                <img src="{{ $sponsor->side_1 }}" class="w-100 m-3" alt="mpnews">
+                                <img src="{{ $sponsor->side_1 }}" class="w-100 m-1" alt="mpnews">
                             </a>
                         </div>
                         <div class="col-md-12">
@@ -195,9 +199,10 @@
                                 <div class="swiper mySwiper">
                                     <div class="swiper-wrapper">
                                         @foreach ($topphoto as $item)
+
                                         <div class="swiper-slide">
                                             <div class="header-slider-container">
-                                                <a href="#">
+                                                <a href="{{ route('photodetails',$item->id) }}">
                                                     <img src="{{ $item->image }}" alt="mpnews" class="img-fluid w-100">
                                                 </a>
                                             </div>
@@ -221,7 +226,7 @@
                             <div class="row">
                                 @foreach ($topphoto as $item)
                                 <div class="col-md-3 col-6 p-1 cat-section-content">
-                                    <a href="{{ route('news',$item->id) }}">
+                                    <a href="{{ route('photodetails',$item->id) }}">
                                         <div class="featured-img">
                                             <img src="{{ $item->image }}" alt="mpnews">
                                         </div>

@@ -42,6 +42,18 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('admin.pages.index');
     })->name('admin.index');
+
+
+
+    //news-common-routes
+
+    Route::get('/news/index', [NewsController::class, 'index'])->name('news.index');
+    Route::get('/news/pending', [NewsController::class, 'pending'])->name('news.pending');
+    Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
+    Route::post('/news/store', [NewsController::class, 'store'])->name('news.store');
+    Route::put('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
+
+
     Route::middleware('admin')->group(function () {
 
         //author-routes....
@@ -95,14 +107,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('/category/inactive/{category}', [CategoryController::class, 'inactive'])->name('category.inactive');
 
 
-        //news-admin-routes
-        Route::post('/news/store', [NewsController::class, 'store'])->name('news.store');
-        Route::get('/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');
-        Route::put('/news/update/{news}', [NewsController::class, 'update'])->name('news.update');
-        Route::get('/news/destroy/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
-        Route::get('/news/active/{news}', [NewsController::class, 'active'])->name('news.active');
-        Route::get('/news/inactive/{news}', [NewsController::class, 'inactive'])->name('news.inactive');
-
         //breakingnews-routes....
 
         Route::get('/breakingNews/index', [BreakingNewsController::class, 'index'])->name('breakingNews.index');
@@ -132,9 +136,15 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     //news-routes....
 
-    Route::get('/news/index', [NewsController::class, 'index'])->name('news.index');
-    Route::get('/news/pending', [NewsController::class, 'pending'])->name('news.pending');
-    Route::get('/news/create', [NewsController::class, 'create'])->name('news.create');
+
+
+
+
+    Route::get('/news/edit/{news}', [NewsController::class, 'edit'])->name('news.edit');
+
+    Route::get('/news/destroy/{news}', [NewsController::class, 'destroy'])->name('news.destroy');
+    Route::get('/news/active/{news}', [NewsController::class, 'active'])->name('news.active');
+    Route::get('/news/inactive/{news}', [NewsController::class, 'inactive'])->name('news.inactive');
 });
 
 Auth::routes();

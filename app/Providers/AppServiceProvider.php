@@ -62,9 +62,12 @@ class AppServiceProvider extends ServiceProvider
 
         $slicedtags = Tag::where('status', 1)->take(5)->orderBy('id', 'DESC')->get();
         View::share('slicedtags', $slicedtags);
+        if (Category::where('status', 1)->get()) {
+            $categoiesSec = Category::where('status', 1)->get();
+            View::share('categoiesSec', $categoiesSec);
+        }
 
-        $categoiesSec = Category::where('status', 1)->get();
-        View::share('categoiesSec', $categoiesSec);
+
 
         $leatestNews = News::where('status', 1)->take(8)->orderBy('id', 'DESC')->get();
         View::share('leatestNews', $leatestNews);

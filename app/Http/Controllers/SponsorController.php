@@ -73,6 +73,19 @@ class SponsorController extends Controller
     {
         $input = $request->all();
 
+        if ($img = $request->file('top1')) {
+            $image = Image::make($img)->resize(1500, 444, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $filePath = 'uploads/images/sponsor/';
+            $setImage = 'mpnews_image_top1' . date('YmdHis') . "." . $img->getClientOriginalExtension();
+            $filelink = $filePath . $setImage;
+            $image->save($filelink, 95);
+            $input['top1'] = asset('') . $filelink;
+        } else {
+            unset($input['top1']);
+        }
         if ($img = $request->file('top')) {
             $image = Image::make($img)->resize(1500, 444, function ($constraint) {
                 $constraint->aspectRatio();

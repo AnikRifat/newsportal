@@ -3,6 +3,7 @@
 <title>{{ $categoryname }}</title>
 @endsection
 @section('content')
+
 <div class="top-section-one">
     <div class="container">
         <div class="row">

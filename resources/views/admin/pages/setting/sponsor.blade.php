@@ -38,6 +38,17 @@
                     @method('put')
                     <div class="form-body">
                         <div class="form-group m-b-40">
+                            <input type="text" class="form-control" name="top1_link" id="top1_link"
+                              value="{{ $sponsor->top1_link }}">
+                            <span class="bar"></span>
+                            <label for="top1_link">sponsor top1 link</label>
+                        </div>
+                        <div class="form-group m-b-60">
+                            <h4 class="card-title">sponsor top1</h4>
+                            <input type="file" id="top1" name="top1" class="dropify" data-max-file-size="500k"
+                              data-default-file="{{ $sponsor->top1 }}" />
+                        </div>
+                        <div class="form-group m-b-40">
                             <input type="text" class="form-control" name="top_link" id="top_link"
                               value="{{ $sponsor->top_link }}">
                             <span class="bar"></span>
